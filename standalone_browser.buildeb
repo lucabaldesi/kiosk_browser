@@ -1,0 +1,50 @@
+#!/bin/bash
+PKG="standalone_browser"
+VER="0.0.1"
+SECTION="user/hidden"
+PRIORITY="Optional"
+ARCH="all"
+MAINTAINER="Luca Baldesi <luca.baldesi@unitn.it>"
+DESC="Browser kiosk"
+BUILD_DIRS="usr/ etc/"
+DEPS="openbox chromium-browser xserver-xorg"
+# more conf fields are available, check:
+# http://www.debian.org/doc/debian-policy/ch-controlfields.html
+
+WD="$PWD"
+
+# create the destination folder tree
+cd $WD
+mkdir -p usr/bin/
+mkdir -p usr/sbin/
+mkdir -p etc/
+cp browser_kiosk usr/bin/
+cp standalone_browser usr/sbin/
+cp standalone_browser_openbox.conf etc/
+
+# configuration part
+echo 2.0 > debian-binary
+echo '#!/bin/bash' > preinst
+echo '#!/bin/bash' > postinst
+echo '#!/bin/bash' > prerm
+echo '#!/bin/bash' > postrm
+
+cat > control << EOL
+Package: $PKG
+Version: $VER
+Section: $SECTION
+Priority: $PRIORITY
+Architecture: $ARCH
+Installed-Size: `du -ks $BUILD_DIRS | cut -f 1 | paste -sd+ - | bc`
+Maintainer: $MAINTAINER
+Build-Depends: $DEPS
+Description: $DESC
+EOL
+
+# pack everything together
+tar czf control.tar.gz control preinst postinst prerm postrm
+tar czf data.tar.gz $BUILD_DIRS
+ar -r "$PKG.deb" debian-binary control.tar.gz data.tar.gz
+
+# cleanup
+rm -rf control control.tar.gz preinst postinst prerm postrm data.tar.gz

@@ -1,0 +1,8 @@
+#!/bin/bash
+
+xset -dpms
+xset s off
+openbox-session --config-file /etc/standalone_browser_openbox.conf &
+
+chromium-browser --no-first-run "http://localhost:3000"
+#chromium-browser --kiosk --no-first-run "http://localhost:3000"
