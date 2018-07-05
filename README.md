@@ -1,7 +1,7 @@
 # Standalone Browser (aka Kiosk)
 
 These files can be used to setup a browser-only interface for a debian system.
-It uses the X server + openbox and (currently) chromium.
+It uses the X server + openbox and (currently) firefox.
 
 ## Building & Installing
 After installing the dependencies (apt install bc), you can build the .deb package with:

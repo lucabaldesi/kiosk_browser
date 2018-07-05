@@ -7,7 +7,7 @@ ARCH="all"
 MAINTAINER="Luca Baldesi <luca.baldesi@unitn.it>"
 DESC="Browser kiosk"
 BUILD_DIRS="usr/ etc/"
-DEPS="openbox chromium-browser xserver-xorg"
+DEPS="openbox firefox-esr xserver-xorg"
 # more conf fields are available, check:
 # http://www.debian.org/doc/debian-policy/ch-controlfields.html
 
