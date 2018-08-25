@@ -7,7 +7,7 @@ ARCH="all"
 MAINTAINER="Luca Baldesi <luca.baldesi@unitn.it>"
 DESC="Browser kiosk"
 BUILD_DIRS="usr/ etc/"
-DEPS="openbox firefox-esr xserver-xorg"
+DEPS="openbox, firefox-esr, xinit"
 # more conf fields are available, check:
 # http://www.debian.org/doc/debian-policy/ch-controlfields.html
 
@@ -37,7 +37,7 @@ Priority: $PRIORITY
 Architecture: $ARCH
 Installed-Size: `du -ks $BUILD_DIRS | cut -f 1 | paste -sd+ - | bc`
 Maintainer: $MAINTAINER
-Build-Depends: $DEPS
+Depends: $DEPS
 Description: $DESC
 EOL
 
