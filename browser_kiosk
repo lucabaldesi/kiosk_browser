@@ -2,8 +2,20 @@
 
 xset -dpms
 xset s off
-openbox-session & #--config-file /etc/standalone_browser_openbox.conf &
+xset s noblank
+#openbox-session &
 
-firefox-esr  "http://localhost:3000"
-#chromium-browser --no-first-run "http://localhost:3000"
+function prettify()
+{
+	while [ -z $wid ]; do
+		sleep 1;
+		wid=$(xdotool search --onlyvisible --name firefox)
+	done
+	xdotool windowmove $wid 0 0 
+	xdotool windowsize $wid 100% 100% 
+}
+
+prettify &
+firefox-esr  "http://youtube.com" 
+#chromium-browser --no-first-run "http://google.com"
 #chromium-browser --kiosk --no-first-run "http://localhost:3000"

@@ -1,13 +1,13 @@
 #!/bin/bash
 PKG="standalone_browser"
-VER="0.0.1"
+VER="0.0.2"
 SECTION="user/hidden"
 PRIORITY="Optional"
 ARCH="all"
 MAINTAINER="Luca Baldesi <luca.baldesi@unitn.it>"
 DESC="Browser kiosk"
-BUILD_DIRS="usr/ etc/"
-DEPS="openbox, firefox-esr, xinit"
+BUILD_DIRS="usr/"
+DEPS="firefox-esr, xinit, xdotool"
 # more conf fields are available, check:
 # http://www.debian.org/doc/debian-policy/ch-controlfields.html
 
@@ -17,10 +17,8 @@ WD="$PWD"
 cd $WD
 mkdir -p usr/bin/
 mkdir -p usr/sbin/
-mkdir -p etc/
 cp browser_kiosk usr/bin/
 cp standalone_browser usr/sbin/
-cp standalone_browser_openbox.conf etc/
 
 # configuration part
 echo 2.0 > debian-binary
